@@ -36,6 +36,8 @@ export class User {
     type => Role,
     role => role.users,
   )
+
+  // 会创建一个关系表
   @JoinTable()
   roles: Role[];
 

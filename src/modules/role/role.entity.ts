@@ -7,12 +7,13 @@ export class Role {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'enum', enum: UserRole })
+  @Column({ type: 'enum', enum: UserRole, unique: true })
   name: UserRole;
 
   @Column()
   alias: string;
 
+  // 角色和用戶多对多的关系
   @ManyToMany(
     type => User,
     user => user.roles,

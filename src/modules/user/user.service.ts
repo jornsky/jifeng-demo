@@ -56,7 +56,33 @@ export class UserService {
     }
   }
 
-  async findOneByName(name: string) {
-    return await this.userRespository.findOne({ name });
+  async findOneByName(name: string, password?: boolean) {
+    const queryBuilder = await this.userRespository.createQueryBuilder('user');
+
+    queryBuilder
+      .where('user.name=:name', { name })
+      .leftJoinAndSelect('user.roles', 'roles');
+
+    if (password) {
+      queryBuilder.addSelect('user.password');
+    }
+
+    const entity = queryBuilder.getOne();
+    return entity;
   }
+
+  async update(id: number, data: UserDto) {
+    const { roles } = data;
+
+    const entity = await this.userRespository.findOne(id);
+
+    if (roles) {
+      entity.roles = roles;
+    }
+
+    return await this.userRespository.save(entity);
+  }
+
+  // 指定用户拥有特定资源id的函数
+  async pocess(id: number, resource: string, resourceid: number) {}
 }
