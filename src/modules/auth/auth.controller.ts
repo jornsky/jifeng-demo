@@ -4,7 +4,7 @@ import { LoginDto } from './auth.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from 'src/core/decorators/user.decrator';
 import { ApiTags } from '@nestjs/swagger';
-
+// 1
 @ApiTags('非开放：auths(除login)')
 @Controller('auth')
 export class AuthController {
