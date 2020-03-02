@@ -7,6 +7,7 @@ import { User } from './modules/user/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
 import { RoleModule } from './modules/role/role.module';
 import { Role } from './modules/role/role.entity';
+import { LinkModule } from './modules/link/link/link.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { Role } from './modules/role/role.entity';
     }),
     AuthModule,
     RoleModule,
+    LinkModule,
   ],
   controllers: [AppController],
   providers: [AppService],

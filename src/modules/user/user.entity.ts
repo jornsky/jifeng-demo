@@ -13,25 +13,32 @@ import {
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import { Role } from '../role/role.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class User {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column('varchar', { unique: true })
   name: string;
 
+  @ApiProperty()
   @Column()
   @Exclude()
   password: string;
 
+  @ApiProperty()
   @CreateDateColumn()
   created: string;
 
+  @ApiProperty()
   @UpdateDateColumn()
   update: string;
 
+  @ApiProperty()
   @ManyToMany(
     type => Role,
     role => role.users,
